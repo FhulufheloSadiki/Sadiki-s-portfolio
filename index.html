@@ -926,7 +926,7 @@
       <h2><i class="fas fa-user"></i> about me</h2>
       <div class="about-grid">
         <div class="about-text">
-          <p><strong>👋 Hi, I'm Fhulufhelo Fortunate Sadiki</strong> — a final-year <strong>Information Technology</strong> student at <strong>North-West University</strong> with a deep passion for <strong>data engineering, software development, and community leadership</strong>.</p>
+          <p><strong>Hi, I'm Fhulufhelo Fortunate Sadiki</strong> — a final-year <strong>Information Technology</strong> student at <strong>North-West University</strong> with a deep passion for <strong>data engineering, software development, and community leadership</strong>.</p>
           <p>I'm fascinated by the <strong>data engineering pipeline</strong> — from ETL processes and data warehousing to building scalable systems that turn raw data into actionable insights. My toolkit includes <strong>C#, .NET, Java, Python, SQL, and web technologies</strong>, and I'm actively expanding my knowledge in <strong>cloud platforms, distributed systems, and big data</strong>.</p>
           <p>As <strong>Chair of Geekulcha NWU 2025/26</strong>, I lead a vibrant tech community, organizing hackathons and workshops that bridge academia and industry. I've built projects ranging from <strong>clinic booking systems to football scouting platforms</strong>, each solving real-world problems through clean code and thoughtful design.</p>
           <p>Outside of tech, I'm passionate about <strong>mentorship, cybersecurity</strong> (currently exploring TryHackMe labs), and finding innovative ways to use technology for social impact.</p>
@@ -1424,17 +1424,17 @@
 
           if (result.success) {
             if (result.fallback) {
-              showMessage('📧 Opening your email client. Please send the message!', 'success');
+              showMessage(' Opening your email client. Please send the message!', 'success');
             } else {
-              showMessage('✅ Message sent successfully! I\'ll get back to you soon.', 'success');
+              showMessage('Message sent successfully! I\'ll get back to you soon.', 'success');
             }
             form.reset();
           } else {
-            showMessage('❌ Could not send. Please email me directly at fortunatesadiki@gmail.com', 'error');
+            showMessage(' Could not send. Please email me directly at fortunatesadiki@gmail.com', 'error');
           }
         } catch (error) {
           console.error('Error:', error);
-          showMessage('❌ Please email me directly at fortunatesadiki@gmail.com', 'error');
+          showMessage(' Please email me directly at fortunatesadiki@gmail.com', 'error');
         } finally {
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
