@@ -332,8 +332,18 @@
 
   /* ===== PROJECTS ===== */
   .grid-flip{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:1.6rem;}
-  .flip-card{perspective:1400px; height:300px; transition:filter 0.3s;}
+  .flip-card{perspective:1400px; height:300px; transition:filter 0.3s; cursor:pointer;}
   .flip-card:hover{filter:drop-shadow(0 18px 34px rgba(76,50,196,0.28));}
+  .flip-card.flipped .flip-inner{transform:rotateY(180deg);}
+  .flip-hint{
+    position:absolute; bottom:12px; right:14px; z-index:2;
+    font-size:0.65rem; letter-spacing:0.03em; text-transform:uppercase;
+    color:var(--ink-soft); display:flex; align-items:center; gap:0.35rem;
+    background:var(--bg-soft); border:1px solid var(--line);
+    padding:0.25rem 0.6rem; border-radius:999px; opacity:0.85;
+  }
+  .flip-hint i{font-size:0.65rem; color:var(--rose-deep); animation:flipHintSpin 2.6s ease-in-out infinite;}
+  @keyframes flipHintSpin{0%,100%{transform:rotateY(0deg);} 50%{transform:rotateY(180deg);}}
   .flip-inner{
     position:relative; width:100%; height:100%; transition:transform 0.7s cubic-bezier(.2,.8,.2,1);
     transform-style:preserve-3d;
@@ -470,10 +480,40 @@
   @media (max-width: 880px){
     .hero{grid-template-columns:1fr; text-align:center;}
     .btn-group{justify-content:center;}
-    .about-grid, .skills-container, .cv-container, .contact-section{grid-template-columns:1fr;}
+    .about-grid, .skills-container, .cv-container, .contact-section, .form-grid{grid-template-columns:1fr;}
     .intro h1{font-size:2.2rem;}
-    .menu-links{display:none;}
-    .top-menu{justify-content:center;}
+
+    .top-menu{
+      left:0; right:0; transform:none; width:100%; max-width:100%;
+      border-radius:0; justify-content:flex-start;
+      padding:0.6rem 3.2rem 0.6rem 1rem;
+      overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    }
+    .top-menu::-webkit-scrollbar{display:none;}
+    .menu-links{flex-wrap:nowrap; gap:1.1rem; width:max-content;}
+    .menu-item{font-size:0.76rem; white-space:nowrap;}
+
+    .theme-toggle{top:12px; right:12px; width:38px; height:38px; font-size:0.9rem;}
+    .back-to-top{bottom:18px; right:16px; width:42px; height:42px;}
+    #home{padding-top:6rem;}
+  }
+
+  @media (max-width: 600px){
+    .container{padding:0 1.1rem;}
+    .arch{width:210px; height:270px; border-radius:105px 105px 10px 10px;}
+    .intro h1{font-size:1.75rem;}
+    .eyebrow{font-size:1.25rem;}
+    .section{padding:2.4rem 0;}
+    .section h2{font-size:1.6rem;}
+    .btn-group{flex-direction:column; align-items:stretch;}
+    .btn-group .btn, .btn-group .btn-outline{justify-content:center;}
+    .leadership-badge, .domain-strip{justify-content:center;}
+    .grid-flip{grid-template-columns:1fr;}
+    .flip-card{height:320px;}
+    .skill-icon-grid{grid-template-columns:repeat(auto-fill, minmax(100px,1fr));}
+    .form-grid{padding:1.5rem;}
+    .contact-links a, .contact-links span{font-size:0.85rem;}
+    .footer{gap:1rem; font-size:0.72rem;}
   }
 </style>
 </head>
@@ -594,7 +634,7 @@
         <p>As <strong>Chair of Geekulcha NWU (2025/26)</strong>, I lead a dynamic tech community through hackathons and workshops that connect academia with industry.</p>
       </div>
       <div class="about-stats">
-        <div class="stat-item"><span class="stat-number">7+</span><span class="stat-label">Projects Built</span></div>
+        <div class="stat-item"><span class="stat-number">3+</span><span class="stat-label">Projects Built</span></div>
         <div class="stat-item"><span class="stat-number">2</span><span class="stat-label">Leadership Roles</span></div>
         <div class="stat-item"><span class="stat-number">2027</span><span class="stat-label">Graduation Year</span></div>
         <div class="stat-item"><span class="stat-number">∞</span><span class="stat-label">Curious Mind</span></div>
@@ -664,23 +704,23 @@
     <h2><i class="fas fa-folder-open"></i> projects</h2>
     <div class="grid-flip">
       <div class="flip-card"><div class="flip-inner">
-        <div class="flip-front"><h3><i class="fas fa-wallet"></i> Expense Tracker Pro</h3><div class="tech-stack">JavaScript · HTML · CSS · localStorage</div><ul><li><i class="fas fa-check-circle"></i> Income &amp; expense tracking</li><li><i class="fas fa-check-circle"></i> Account management</li><li><i class="fas fa-check-circle"></i> Persistent financial history</li></ul></div>
+        <div class="flip-front"><h3><i class="fas fa-wallet"></i> Expense Tracker Pro</h3><div class="tech-stack">JavaScript · HTML · CSS · localStorage</div><ul><li><i class="fas fa-check-circle"></i> Income &amp; expense tracking</li><li><i class="fas fa-check-circle"></i> Account management</li><li><i class="fas fa-check-circle"></i> Persistent financial history</li></ul><span class="flip-hint"><i class="fas fa-arrows-rotate"></i> flip me</span></div>
         <div class="flip-back"><h3>Expense Tracker Pro</h3><p>A fully functional, client-side web application for managing personal finances — create accounts, track income and expenses, and maintain a complete financial history, all with data persistence using localStorage.</p><ul><li><i class="fas fa-check"></i> Account creation</li><li><i class="fas fa-check"></i> Income &amp; expense logging</li><li><i class="fas fa-check"></i> Financial history &amp; localStorage persistence</li></ul><div class="flip-links"><a href="https://fhulufhelosadiki.github.io/Expense-Tracker/" target="_blank" class="github-flip-link"><i class="fas fa-arrow-up-right-from-square"></i> Live Site</a><a href="https://github.com/FhulufheloSadiki/Expense-Tracker" target="_blank" class="github-flip-link"><i class="fab fa-github"></i> View Repo</a></div></div>
       </div></div>
       <div class="flip-card"><div class="flip-inner">
-        <div class="flip-front"><h3><i class="fas fa-futbol"></i> Football Scout</h3><div class="tech-stack">Python · Flask · MySQL · Group Project</div><ul><li><i class="fas fa-chart-line"></i> Player performance</li><li><i class="fas fa-star"></i> Scout evaluations</li><li><i class="fas fa-database"></i> Match reporting</li></ul></div>
+        <div class="flip-front"><h3><i class="fas fa-futbol"></i> Football Scout</h3><div class="tech-stack">Python · Flask · MySQL · Group Project</div><ul><li><i class="fas fa-chart-line"></i> Player performance</li><li><i class="fas fa-star"></i> Scout evaluations</li><li><i class="fas fa-database"></i> Match reporting</li></ul><span class="flip-hint"><i class="fas fa-arrows-rotate"></i> flip me</span></div>
         <div class="flip-back"><h3>Football Scouting Platform</h3><p>Web-based platform for evaluating player performance, managing match reports, and scout recommendations. Built as a group project.</p><ul><li><i class="fas fa-check"></i> Player profiles &amp; stats</li><li><i class="fas fa-check"></i> Match reporting</li><li><i class="fas fa-check"></i> Scout evaluation module</li></ul><div class="flip-links"><a href="https://github.com/Thabzin25/players_flask_app" target="_blank" class="github-flip-link"><i class="fab fa-github"></i> View Repo</a></div></div>
       </div></div>
       <div class="flip-card"><div class="flip-inner">
-        <div class="flip-front"><h3><i class="fas fa-calculator"></i> Calculator</h3><div class="tech-stack">JavaScript · HTML · CSS</div><ul><li><i class="fas fa-plus-circle"></i> Core arithmetic operations</li><li><i class="fas fa-keyboard"></i> Keyboard support</li><li><i class="fas fa-mobile-alt"></i> Responsive layout</li></ul></div>
+        <div class="flip-front"><h3><i class="fas fa-calculator"></i> Calculator</h3><div class="tech-stack">JavaScript · HTML · CSS</div><ul><li><i class="fas fa-plus-circle"></i> Core arithmetic operations</li><li><i class="fas fa-keyboard"></i> Keyboard support</li><li><i class="fas fa-mobile-alt"></i> Responsive layout</li></ul><span class="flip-hint"><i class="fas fa-arrows-rotate"></i> flip me</span></div>
         <div class="flip-back"><h3>Calculator</h3><p>A clean, responsive calculator web app for everyday arithmetic, built with vanilla JavaScript for fast, dependable calculations.</p><ul><li><i class="fas fa-check"></i> Add, subtract, multiply, divide</li><li><i class="fas fa-check"></i> Keyboard input support</li><li><i class="fas fa-check"></i> Responsive, mobile-friendly UI</li></ul><div class="flip-links"><a href="https://fhulufhelosadiki.github.io/Calculator/" target="_blank" class="github-flip-link"><i class="fas fa-arrow-up-right-from-square"></i> Live Site</a><a href="https://github.com/FhulufheloSadiki/Calculator" target="_blank" class="github-flip-link"><i class="fab fa-github"></i> View Repo</a></div></div>
       </div></div>
       <div class="flip-card"><div class="flip-inner">
-        <div class="flip-front"><h3><i class="fas fa-university"></i> Banking App</h3><div class="tech-stack">C++ · Console</div><ul><li><i class="fas fa-wallet"></i> Account management</li><li><i class="fas fa-exchange-alt"></i> Transactions</li><li><i class="fas fa-chart-bar"></i> Balance tracking</li></ul></div>
+        <div class="flip-front"><h3><i class="fas fa-university"></i> Banking App</h3><div class="tech-stack">C++ · Console</div><ul><li><i class="fas fa-wallet"></i> Account management</li><li><i class="fas fa-exchange-alt"></i> Transactions</li><li><i class="fas fa-chart-bar"></i> Balance tracking</li></ul><span class="flip-hint"><i class="fas fa-arrows-rotate"></i> flip me</span></div>
         <div class="flip-back"><h3>Banking Application</h3><p>Console-based banking simulation with account creation, deposits, withdrawals, and transaction history.</p><ul><li><i class="fas fa-check"></i> Account creation</li><li><i class="fas fa-check"></i> Deposit &amp; withdrawal</li><li><i class="fas fa-check"></i> Transaction history</li><li><i class="fas fa-check"></i> Balance inquiry</li></ul><div class="flip-links"><a href="https://github.com/FhulufheloSadiki/BankingApp" target="_blank" class="github-flip-link"><i class="fab fa-github"></i> View Repo</a></div></div>
       </div></div>
       <div class="flip-card"><div class="flip-inner">
-        <div class="flip-front"><h3><i class="fas fa-utensils"></i> Nate's Burger</h3><div class="tech-stack">HTML · CSS · JS</div><ul><li><i class="fas fa-mobile-alt"></i> Responsive UI</li><li><i class="fas fa-shopping-cart"></i> Order system</li><li><i class="fas fa-pizza-slice"></i> Menu display</li></ul></div>
+        <div class="flip-front"><h3><i class="fas fa-utensils"></i> Nate's Burger</h3><div class="tech-stack">HTML · CSS · JS</div><ul><li><i class="fas fa-mobile-alt"></i> Responsive UI</li><li><i class="fas fa-shopping-cart"></i> Order system</li><li><i class="fas fa-pizza-slice"></i> Menu display</li></ul><span class="flip-hint"><i class="fas fa-arrows-rotate"></i> flip me</span></div>
         <div class="flip-back"><h3>Nate's Burger Shop</h3><p>Responsive front-end interface for a burger shop ordering system with dynamic menu display.</p><ul><li><i class="fas fa-check"></i> Responsive design</li><li><i class="fas fa-check"></i> Interactive menu</li><li><i class="fas fa-check"></i> Order simulation</li></ul><div class="flip-links"><a href="https://fhulufhelosadiki.github.io/nates-burger-shop/" target="_blank" class="github-flip-link"><i class="fas fa-arrow-up-right-from-square"></i> Live Site</a><a href="https://github.com/FhulufheloSadiki/nates-burger-shop" target="_blank" class="github-flip-link"><i class="fab fa-github"></i> View Repo</a></div></div>
       </div></div>
     </div>
@@ -779,6 +819,14 @@
 <script>
   (function() {
     'use strict';
+
+    // tap-to-flip for project cards (hover alone doesn't work well on touch devices)
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return; // let repo/live links navigate normally
+        card.classList.toggle('flipped');
+      });
+    });
 
     // scroll progress bar + back-to-top visibility
     const scrollProgress = document.getElementById('scrollProgress');
@@ -932,7 +980,7 @@
         const result = await sendEmail(formData);
         if (result.success) {
           if (result.fallback) showMessage(' Opening your email client. Please send the message!', 'success');
-          else showMessage(' Message sent successfully! I\'ll get back to you soon.', 'success');
+          else showMessage('Message sent successfully! I\'ll get back to you soon.', 'success');
           form.reset();
         } else {
           showMessage(' Could not send. Please email me directly at fortunatesadiki@gmail.com', 'error');
